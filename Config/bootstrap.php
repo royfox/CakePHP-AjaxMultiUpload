@@ -10,6 +10,6 @@
  *                and/or GNU GPL v3 (http://www.gnu.org/copyleft/gpl.html)
  */
 
- 	Configure::write ('AMU.directory', 'files');
+ 	Configure::write ('AMU.directory', '../uploads');
 	Configure::write ('AMU.filesizeMB', '2');
 ?>

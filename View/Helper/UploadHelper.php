@@ -15,7 +15,7 @@ class UploadHelper extends AppHelper {
 
 	public function view ($model, $id) {
 		
-		require_once (CORE_PATH . "/Plugin/AjaxMultiUpload/Config/bootstrap.php");
+		require_once (CORE_PATH . "../app/Plugin/AjaxMultiUpload/Config/bootstrap.php");
 		$dir = Configure::read('AMU.directory');
 		if (strlen($dir) < 1) $dir = "files";
 
@@ -23,7 +23,7 @@ class UploadHelper extends AppHelper {
 		$directory = WWW_ROOT . DS . $dir . DS . $lastDir;
 		$baseUrl = Router::url("/") . $dir . DS . $lastDir;
 		$files = glob ("$directory/*");
-		$str = "<dt>" . __("Files") . "</dt>\n<dd>";
+		$str = "<label>" . __("Attachments") . "</label>\n<dd>";
 		$count = 0;
 		foreach ($files as $file) {
 			$type = pathinfo($file, PATHINFO_EXTENSION);
@@ -31,7 +31,7 @@ class UploadHelper extends AppHelper {
 			$filesize = $this->format_bytes (filesize ($file));
 			$file = basename($file);
 			$url = $baseUrl . "/$file";
-			$str .= "<a href='$url'>" . $file. "</a> ($filesize)";
+			$str .= "<a target='_blank' href='$url'>" . $file. "</a> ($filesize)";
 			$str .= "<br />\n";
 		}
 		$str .= "</dd>\n"; 
@@ -39,7 +39,7 @@ class UploadHelper extends AppHelper {
 	}
 
 	public function edit ($model, $id) {
-		require_once (CORE_PATH . "/Plugin/AjaxMultiUpload/Config/bootstrap.php");
+		require_once (CORE_PATH . "../app/Plugin/AjaxMultiUpload/Config/bootstrap.php");
 		$dir = Configure::read('AMU.directory');
 		if (strlen($dir) < 1) $dir = "files";
 

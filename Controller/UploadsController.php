@@ -19,9 +19,10 @@ class UploadsController extends AjaxMultiUploadAppController {
 	var $allowedExtensions = array();
 
 	function upload($dir=null) {
-        	require_once (CORE_PATH . "/Plugin/AjaxMultiUpload/Config/bootstrap.php");
+        	require_once (CORE_PATH . "../app/Plugin/AjaxMultiUpload/Config/bootstrap.php");
 		// max file size in bytes
 		$size = Configure::read ('AMU.filesizeMB');
+
 		if (strlen($size) < 1) $size = 4;
 		$relPath = Configure::read ('AMU.directory');
 		if (strlen($relPath) < 1) $relPath = "files";
@@ -44,6 +45,7 @@ class UploadsController extends AjaxMultiUploadAppController {
 		$uploader = new qqFileUploader($this->allowedExtensions, 
 			$sizeLimit);
 		$result = $uploader->handleUpload($dir);
+
 		$this->set("result", htmlspecialchars(json_encode($result), ENT_NOQUOTES));
 	}
 
