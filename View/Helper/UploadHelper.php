@@ -23,7 +23,12 @@ class UploadHelper extends AppHelper {
 		$directory = WWW_ROOT . DS . $dir . DS . $lastDir;
 		$baseUrl = Router::url("/") . $dir . DS . $lastDir;
 		$files = glob ("$directory/*");
-		$str = "<label>" . __("Attachments") . "</label>\n<dd>";
+        if(count($files)){
+            $str = "<label>" . __("Attachments") . "</label>\n<dd>";
+        } else {
+            $str = "<dd>";
+        }
+
 		$count = 0;
 		foreach ($files as $file) {
 			$type = pathinfo($file, PATHINFO_EXTENSION);
